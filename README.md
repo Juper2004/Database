@@ -13,6 +13,7 @@ Opening `index.html` alone in a browser is not enough.
 Open a terminal in the project folder and run:
 ```bash
 pip install fastapi uvicorn
+python -m pip install uvicorn fastapi
 ```
 
 ### 2. Seed the database (first time only)
@@ -24,6 +25,7 @@ This creates `ems.db` with sample departments, employees, leave requests, and pa
 ### 3. Start the server
 ```bash
 uvicorn server:app --reload
+python -m uvicorn server:app --reload
 ```
 You should see:
 ```
