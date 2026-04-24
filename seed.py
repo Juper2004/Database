@@ -32,7 +32,7 @@ def seed():
 
     print("\n── Payroll ──")
     p1 = process_payroll(e1, "2025-07", bonus=5000, deductions=2000)
-    p2 = process_payroll(e2, "2025-07", bonus=3000, deductions=1500)
+    p2 = process_payroll(e2, "2025-07", bonus=3000, deductions=1500)s
     p3 = process_payroll(e4, "2025-07", bonus=4000, deductions=1800)
     print(f"  Payroll records: {p1}, {p2}, {p3}")
 
