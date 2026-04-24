@@ -196,3 +196,7 @@ def audit(limit: int = 40):
 @app.get("/")
 def root():
     return FileResponse(os.path.join(os.path.dirname(__file__), "index.html"))
+
+@app.get("/hr.jpg")
+def logo():
+    return FileResponse("hr.jpg")
