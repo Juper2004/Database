@@ -46,6 +46,8 @@ body::after {
 }
 
 /* ── LOGIN SCREEN ── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap');
+
 #login-screen {
   display: flex;
   align-items: center;
@@ -54,86 +56,218 @@ body::after {
   position: relative;
   z-index: 10;
 }
+
+/* Outer card wrapper — split layout */
 .login-card {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 24px;
-  padding: 40px 36px;
-  width: 360px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  display: flex;
+  width: 820px;
+  max-width: calc(100vw - 40px);
+  min-height: 480px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
 }
-.login-logo {
+
+/* LEFT PANEL — welcome / branding */
+.login-left {
+  flex: 0 0 340px;
+  background: linear-gradient(145deg, #7c3aed 0%, #2563eb 55%, #0891b2 100%);
+  padding: 44px 36px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 28px;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
 }
-.login-logo-img {
-  width: 72px; height: 72px;
-  border-radius: 18px;
-  object-fit: cover;
+/* Decorative blobs */
+.login-left::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+}
+.login-left::after {
+  content: '';
+  position: absolute;
+  bottom: 40px; left: 60px;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.login-left-blob3 {
+  position: absolute;
+  top: -40px; right: -50px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  pointer-events: none;
+}
+.login-left-logo {
+  display: flex; align-items: center; gap: 10px;
+  position: relative; z-index: 1;
+}
+.login-left-logo-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+}
+.login-left-logo-icon img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.login-left-logo-text {
+  font-size: 15px; font-weight: 700; color: #fff;
+  letter-spacing: 0.2px;
+}
+.login-left-body {
+  position: relative; z-index: 1;
+}
+.login-left-welcome {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px; font-weight: 800;
+  color: #fff; line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+.login-left-tagline {
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  text-transform: uppercase; letter-spacing: 1.2px;
   margin-bottom: 14px;
-  box-shadow: 0 4px 20px rgba(167,139,250,0.5);
 }
-.login-logo-title {
-  font-size: 20px; font-weight: 700;
+.login-left-desc {
+  font-size: 12px; color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  max-width: 240px;
+}
+.login-left-footer {
+  position: relative; z-index: 1;
+  font-size: 11px; color: rgba(255,255,255,0.45);
+}
+
+/* RIGHT PANEL — form */
+.login-right {
+  flex: 1;
+  background: rgba(12, 8, 36, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 44px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+.login-right-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px; font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: 0.3px;
+  margin-bottom: 6px;
 }
-.login-logo-sub {
+.login-right-sub {
   font-size: 12px; color: var(--text-muted);
-  margin-top: 4px;
+  margin-bottom: 28px;
 }
 .login-field {
   display: flex; flex-direction: column; gap: 5px;
   margin-bottom: 14px;
+  position: relative;
 }
 .login-field label {
-  font-size: 11px; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.6px;
+  font-size: 10px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600;
+}
+.login-field-wrap {
+  position: relative; display: flex; align-items: center;
+}
+.login-field-icon {
+  position: absolute; left: 13px;
+  display: flex; align-items: center;
+  color: rgba(255,255,255,0.3);
+  pointer-events: none;
 }
 .login-field input {
-  height: 42px; font-size: 13px; padding: 0 14px;
-  border: 1px solid rgba(255,255,255,0.25);
+  width: 100%;
+  height: 44px; font-size: 13px; padding: 0 42px;
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 12px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.07);
   color: var(--text-primary);
   outline: none;
-  backdrop-filter: blur(6px);
   transition: border-color .15s, background .15s;
 }
-.login-field input::placeholder { color: rgba(255,255,255,0.3); }
+.login-field input::placeholder { color: rgba(255,255,255,0.25); }
 .login-field input:focus {
   border-color: var(--accent1);
-  background: rgba(167,139,250,0.18);
+  background: rgba(167,139,250,0.12);
 }
+.login-field input:focus + .login-field-icon,
+.login-field-wrap:focus-within .login-field-icon { color: var(--accent1); }
+/* show-password toggle */
+.login-show-btn {
+  position: absolute; right: 12px;
+  background: none; border: none;
+  font-size: 10px; font-weight: 700; color: var(--accent1);
+  cursor: pointer; letter-spacing: .5px; text-transform: uppercase;
+  padding: 2px 4px;
+}
+.login-show-btn:hover { color: #c4b5fd; }
+
+.login-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+}
+.login-remember {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--text-muted); cursor: pointer;
+}
+.login-remember input[type=checkbox] { accent-color: var(--accent1); cursor: pointer; }
+.login-forgot {
+  font-size: 11px; color: var(--accent1);
+  background: none; border: none; cursor: pointer;
+  padding: 0; transition: color .15s;
+}
+.login-forgot:hover { color: #c4b5fd; }
+
 .login-btn {
-  width: 100%; height: 44px;
-  font-size: 14px; font-weight: 600; cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.3);
+  width: 100%; height: 46px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  border: none;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(167,139,250,0.7), rgba(52,214,200,0.6));
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
   color: #fff;
-  margin-top: 8px;
-  backdrop-filter: blur(8px);
-  transition: opacity .15s;
+  letter-spacing: 0.3px;
+  transition: opacity .15s, transform .1s;
+  box-shadow: 0 6px 20px rgba(124,58,237,0.4);
 }
-.login-btn:hover { opacity: 0.85; }
+.login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.login-btn:active { transform: translateY(0); }
+
+.login-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 16px 0;
+}
+.login-divider::before, .login-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.login-divider span { font-size: 11px; color: var(--text-dim); }
+
 .login-error {
   font-size: 11px; color: #f472b6;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 8px;
   min-height: 16px;
+  animation: shake .3s ease;
 }
-.login-hint {
-  font-size: 10px; color: var(--text-dim);
-  text-align: center; margin-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 14px;
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-5px); }
+  75%      { transform: translateX(5px); }
 }
-.login-hint span { color: var(--text-muted); }
 
 /* ── MAIN APP ── */
 #app-screen {
@@ -169,11 +303,12 @@ body::after {
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  box-shadow: 0 4px 16px rgba(167,139,250,0.4);
 }
 .logo-icon img {
-  width: 36px; height: 36px;
-  object-fit: cover; display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .sidebar-logo-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
 .sidebar-logo-sub   { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
@@ -371,6 +506,15 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
   font-size: 12px; padding: 2px 6px;
 }
 .del:hover { color: #f472b6; }
+.edit-btn {
+  background: rgba(167,139,250,0.12);
+  border: 1px solid rgba(167,139,250,0.35);
+  color: #c4b5fd; cursor: pointer;
+  font-size: 10px; padding: 2px 9px; border-radius: 20px;
+  backdrop-filter: blur(4px);
+  transition: background .15s;
+}
+.edit-btn:hover { background: rgba(167,139,250,0.25); border-color: var(--accent1); }
 .act-btn {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,.2);
@@ -425,6 +569,226 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
   padding: 1px 8px; font-family: monospace; font-size: 12px;
   color: #fecdd3; margin: 0 4px;
 }
+
+/* ══════════════════════════════════════
+   EDIT MODAL
+══════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; animation: fadeIn .18s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: rgba(22, 10, 55, 0.92);
+  border: 1px solid rgba(167,139,250,0.4);
+  border-radius: 20px;
+  padding: 28px 28px 24px;
+  width: 540px;
+  max-width: calc(100vw - 40px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07);
+  animation: slideUp .2s ease;
+  position: relative;
+}
+@keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 22px;
+}
+.modal-title {
+  font-size: 15px; font-weight: 700; color: var(--text-primary);
+  display: flex; align-items: center; gap: 8px;
+}
+.modal-title-badge {
+  font-size: 10px; font-weight: 600;
+  background: linear-gradient(135deg, rgba(167,139,250,0.3), rgba(52,214,200,0.3));
+  border: 1px solid rgba(167,139,250,0.4);
+  color: #c4b5fd; padding: 2px 10px; border-radius: 20px;
+}
+.modal-close {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text-muted); cursor: pointer;
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: background .15s, color .15s;
+}
+.modal-close:hover { background: rgba(244,114,182,0.2); color: #f472b6; border-color: rgba(244,114,182,0.4); }
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.modal-grid .field.full { grid-column: span 2; }
+
+.modal-field { display: flex; flex-direction: column; gap: 5px; }
+.modal-field label {
+  font-size: 10px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600;
+}
+.modal-field input,
+.modal-field select {
+  height: 38px; font-size: 13px; padding: 0 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color .15s, background .15s;
+}
+.modal-field input::placeholder { color: rgba(255,255,255,0.3); }
+.modal-field input:focus,
+.modal-field select:focus {
+  border-color: var(--accent1);
+  background: rgba(167,139,250,0.15);
+}
+.modal-field select {
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.6)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px; cursor: pointer; color-scheme: dark;
+}
+.modal-field select option { background: #1a0533; color: #fff; }
+
+.modal-actions {
+  display: flex; gap: 8px; justify-content: flex-end;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.modal-cancel {
+  height: 36px; padding: 0 18px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.07);
+  color: var(--text-muted);
+  transition: background .15s;
+}
+.modal-cancel:hover { background: rgba(255,255,255,0.12); color: var(--text-primary); }
+.modal-save {
+  height: 36px; padding: 0 22px;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  border: 1px solid rgba(167,139,250,0.5);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(167,139,250,0.65), rgba(52,214,200,0.55));
+  color: #fff;
+  transition: opacity .15s;
+  display: flex; align-items: center; gap: 6px;
+}
+.modal-save:hover { opacity: 0.85; }
+.modal-save svg { width: 13px; height: 13px; }
+
+/* Divider line inside modal */
+.modal-divider {
+  height: 1px; background: rgba(255,255,255,0.1);
+  margin: 4px 0 18px;
+}
+
+/* ══════════════════════════════════════
+   LOGOUT CONFIRMATION MODAL
+══════════════════════════════════════ */
+#modal-logout .modal {
+  width: 400px;
+  text-align: center;
+}
+.logout-modal-icon {
+  width: 64px; height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(244,114,182,0.2), rgba(167,139,250,0.2));
+  border: 1px solid rgba(244,114,182,0.35);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+@keyframes iconPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244,114,182,0.25); }
+  50%       { box-shadow: 0 0 0 10px rgba(244,114,182,0); }
+}
+.logout-modal-title {
+  font-size: 17px; font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.logout-modal-sub {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+.logout-user-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(167,139,250,0.12);
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: 30px;
+  padding: 5px 14px 5px 8px;
+  margin: 10px auto 22px;
+}
+.logout-user-chip .chip-avatar {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: #fff;
+}
+.logout-user-chip .chip-name {
+  font-size: 12px; font-weight: 600; color: #c4b5fd;
+}
+.logout-modal-actions {
+  display: flex; gap: 10px;
+  margin-top: 4px;
+}
+.logout-cancel-btn {
+  flex: 1; height: 42px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.07);
+  color: var(--text-muted);
+  transition: background .15s, color .15s, border-color .15s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.logout-cancel-btn:hover {
+  background: rgba(167,139,250,0.15);
+  color: var(--text-primary);
+  border-color: rgba(167,139,250,0.4);
+}
+.logout-confirm-btn {
+  flex: 1; height: 42px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  border: 1px solid rgba(244,114,182,0.5);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(244,114,182,0.5), rgba(167,89,162,0.5));
+  color: #fff;
+  transition: opacity .15s, transform .1s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  backdrop-filter: blur(8px);
+}
+.logout-confirm-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.logout-confirm-btn:active { transform: translateY(0); }
+
+/* Separator with "or" text */
+.logout-modal-sep {
+  display: flex; align-items: center; gap: 10px;
+  margin: 18px 0 14px;
+}
+.logout-modal-sep::before,
+.logout-modal-sep::after {
+  content: ''; flex: 1;
+  height: 1px; background: rgba(255,255,255,0.1);
+}
+.logout-modal-sep span {
+  font-size: 10px; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: .8px;
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
@@ -435,22 +799,68 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
 <!-- ══════════════ LOGIN SCREEN ══════════════ -->
 <div id="login-screen">
   <div class="login-card">
-    <div class="login-logo">
-      <img src="hr.jpg" class="login-logo-img" alt="HR Logo">
-      <div class="login-logo-title">HR System</div>
-      <div class="login-logo-sub">Employee Management Portal</div>
+
+    <!-- LEFT: branding panel -->
+    <div class="login-left">
+      <div class="login-left-blob3"></div>
+
+      <!-- Logo -->
+      <div class="login-left-logo">
+        <div class="login-left-logo-icon">
+          <img src="hr.jpg" alt="HR Logo">
+        </div>
+        <span class="login-left-logo-text">HR System</span>
+      </div>
+
+      <!-- Welcome copy -->
+      <div class="login-left-body">
+        <div class="login-left-welcome">Welcome<br>Back!</div>
+        <div class="login-left-tagline">HR Management</div>
+        <div class="login-left-desc">
+          Manage your workforce, payroll, departments, and leave requests — all in one place.
+        </div>
+      </div>
+
+      <div class="login-left-footer">© 2026 HR System · All rights reserved</div>
     </div>
-    <div class="login-field">
-      <label>Username</label>
-      <input id="l-user" type="text" placeholder="admin" autocomplete="username">
+
+    <!-- RIGHT: form panel -->
+    <div class="login-right">
+      <div class="login-right-title">Sign In</div>
+      <div class="login-right-sub">Enter your credentials to access the portal</div>
+
+      <div class="login-field">
+        <label>Username</label>
+        <div class="login-field-wrap">
+          <span class="login-field-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <input id="l-user" type="text" placeholder="Enter username" autocomplete="username">
+        </div>
+      </div>
+
+      <div class="login-field">
+        <label>Password</label>
+        <div class="login-field-wrap">
+          <span class="login-field-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <input id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password">
+          <button class="login-show-btn" type="button" onclick="togglePass()">SHOW</button>
+        </div>
+      </div>
+
+      <div class="login-row">
+        <label class="login-remember">
+          <input type="checkbox" id="l-remember"> Remember me
+        </label>
+        
+      </div>
+
+      <button class="login-btn" onclick="doLogin()">Sign In</button>
+      <div class="login-error" id="login-err"></div>
     </div>
-    <div class="login-field">
-      <label>Password</label>
-      <input id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password">
-    </div>
-    <button class="login-btn" onclick="doLogin()">Sign In</button>
-    <div class="login-error" id="login-err"></div>
-    
+
   </div>
 </div>
 
@@ -461,9 +871,9 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-logo">
-        <div class="logo-icon">
-          <img src="hr.jpg" alt="HR Logo">
-        </div>
+       <div class="logo-icon">
+   <img src="hr.jpg" alt="HR Logo">
+      </div>
         <div class="sidebar-logo-title">HR System</div>
         <div class="sidebar-logo-sub">Employee Management</div>
       </div>
@@ -499,7 +909,7 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
             <div class="user-role">HR Administrator</div>
           </div>
         </div>
-        <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+        <button class="logout-btn" onclick="confirmLogout()">Sign Out</button>
       </div>
     </div>
 
@@ -640,6 +1050,155 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
   </div>
 </div>
 
+<!-- ══════════════ EDIT EMPLOYEE MODAL ══════════════ -->
+<div class="modal-overlay" id="modal-emp">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M11.5 2.5a1.414 1.414 0 0 1 2 2L5 13H3v-2L11.5 2.5z" stroke="#a78bfa" stroke-width="1.3" fill="none"/>
+        </svg>
+        Edit Employee
+        <span class="modal-title-badge">Update Record</span>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-emp')">✕</button>
+    </div>
+    <div class="modal-divider"></div>
+    <input type="hidden" id="edit-emp-id">
+    <div class="modal-grid">
+      <div class="field modal-field">
+        <label>First Name</label>
+        <input id="edit-emp-fn" placeholder="First name">
+      </div>
+      <div class="field modal-field">
+        <label>Last Name</label>
+        <input id="edit-emp-ln" placeholder="Last name">
+      </div>
+      <div class="field modal-field full">
+        <label>Email</label>
+        <input id="edit-emp-email" placeholder="email@company.com">
+      </div>
+      <div class="field modal-field">
+        <label>Position</label>
+        <input id="edit-emp-pos" placeholder="Position / Role">
+      </div>
+      <div class="field modal-field">
+        <label>Department</label>
+        <select id="edit-emp-dept"></select>
+      </div>
+      <div class="field modal-field">
+        <label>Salary (₱)</label>
+        <input id="edit-emp-sal" type="number" placeholder="60000">
+      </div>
+      <div class="field modal-field">
+        <label>Status</label>
+        <select id="edit-emp-status">
+          <option value="active">Active</option>
+          <option value="on_leave">On Leave</option>
+          <option value="resigned">Resigned</option>
+          <option value="terminated">Terminated</option>
+        </select>
+      </div>
+      <div class="field modal-field">
+        <label>Hire Date</label>
+        <input id="edit-emp-hire" type="date">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('modal-emp')">Cancel</button>
+      <button class="modal-save" onclick="saveEmployee()">
+        <svg viewBox="0 0 13 13" fill="none"><path d="M2 7l3.5 3.5L11 3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ EDIT DEPARTMENT MODAL ══════════════ -->
+<div class="modal-overlay" id="modal-dept">
+  <div class="modal" style="width:380px">
+    <div class="modal-header">
+      <div class="modal-title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M11.5 2.5a1.414 1.414 0 0 1 2 2L5 13H3v-2L11.5 2.5z" stroke="#a78bfa" stroke-width="1.3" fill="none"/>
+        </svg>
+        Edit Department
+        <span class="modal-title-badge">Update Record</span>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-dept')">✕</button>
+    </div>
+    <div class="modal-divider"></div>
+    <input type="hidden" id="edit-dept-id">
+    <div class="modal-grid" style="grid-template-columns:1fr">
+      <div class="field modal-field">
+        <label>Department Name</label>
+        <input id="edit-dept-name" placeholder="e.g. Engineering">
+      </div>
+      <div class="field modal-field">
+        <label>Budget (₱)</label>
+        <input id="edit-dept-budget" type="number" placeholder="1000000">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('modal-dept')">Cancel</button>
+      <button class="modal-save" onclick="saveDept()">
+        <svg viewBox="0 0 13 13" fill="none"><path d="M2 7l3.5 3.5L11 3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ LOGOUT CONFIRMATION MODAL ══════════════ -->
+<div class="modal-overlay" id="modal-logout">
+  <div class="modal" style="width:400px; text-align:center; padding:32px 28px 26px;">
+
+    <!-- Icon -->
+    <div class="logout-modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="16 17 21 12 16 7" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="21" y1="12" x2="9" y2="12" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="logout-modal-title">Sign Out of HR System?</div>
+    <div class="logout-modal-sub">
+      You're about to end your current session.<br>Any unsaved changes will be lost.
+    </div>
+
+    <!-- Current user chip -->
+    <div style="display:flex;justify-content:center">
+      <div class="logout-user-chip">
+        <div class="chip-avatar" id="logout-chip-avatar">A</div>
+        <div class="chip-name" id="logout-chip-name">Admin</div>
+      </div>
+    </div>
+
+    <div class="logout-modal-sep"><span>choose an action</span></div>
+
+    <div class="logout-modal-actions">
+      <!-- Cancel -->
+      <button class="logout-cancel-btn" onclick="closeModal('modal-logout')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 7 7)"/>
+        </svg>
+        Stay Logged In
+      </button>
+      <!-- Confirm -->
+      <button class="logout-confirm-btn" onclick="doLogout()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <polyline points="16 17 21 12 16 7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="21" y1="12" x2="9" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        Yes, Sign Out
+      </button>
+    </div>
+
+  </div>
+</div>
+
 <div id="server-banner">
   ⚠️ Cannot connect to the backend server. Run: <code>uvicorn server:app --reload</code>
 </div>
@@ -649,12 +1208,24 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
 const API = "http://localhost:8000";
 let depts = [], emps = [];
 
-// ── Hard-coded users (add more here as needed) ──
 const USERS = [
   { username: "admin",   password: "jupernavarro",  name: "Admin",        role: "HR Administrator" },
-  { username: "hr",      password: "hr2025",    name: "HR Manager",   role: "HR Manager" },
-  { username: "payroll", password: "pay2025",   name: "Payroll Staff", role: "Payroll Officer" },
+  { username: "hr",      password: "hr2025",        name: "HR Manager",   role: "HR Manager" },
+  { username: "payroll", password: "pay2025",       name: "Payroll Staff", role: "Payroll Officer" },
 ];
+
+// ── Show/hide password ──
+function togglePass() {
+  const inp = document.getElementById("l-pass");
+  const btn = inp.parentElement.querySelector(".login-show-btn");
+  if (inp.type === "password") {
+    inp.type = "text";
+    btn.textContent = "HIDE";
+  } else {
+    inp.type = "password";
+    btn.textContent = "SHOW";
+  }
+}
 
 // ── Login / Logout ──
 function doLogin() {
@@ -671,13 +1242,26 @@ function doLogin() {
   showApp(user);
 }
 
+// Opens the logout confirmation modal instead of logging out immediately
+function confirmLogout() {
+  const saved = sessionStorage.getItem("hr_user");
+  if (saved) {
+    try {
+      const user = JSON.parse(saved);
+      document.getElementById("logout-chip-avatar").textContent = user.name[0].toUpperCase();
+      document.getElementById("logout-chip-name").textContent = user.name;
+    } catch(e) {}
+  }
+  openModal("modal-logout");
+}
+
 function doLogout() {
+  closeModal("modal-logout");
   sessionStorage.removeItem("hr_user");
   document.getElementById("app-screen").style.display = "none";
   document.getElementById("login-screen").style.display = "flex";
   document.getElementById("l-user").value = "";
   document.getElementById("l-pass").value = "";
-  document.body.style.overflow = "hidden";
 }
 
 function showApp(user) {
@@ -690,14 +1274,29 @@ function showApp(user) {
   loadEmps();
 }
 
-// Allow Enter key on login
 document.getElementById("l-pass").addEventListener("keydown", e => { if (e.key === "Enter") doLogin(); });
 document.getElementById("l-user").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("l-pass").focus(); });
 
-// Auto-login if session exists
 window.addEventListener("DOMContentLoaded", () => {
   const saved = sessionStorage.getItem("hr_user");
   if (saved) { try { showApp(JSON.parse(saved)); } catch(e) { sessionStorage.removeItem("hr_user"); } }
+});
+
+// ── Modal helpers ──
+function openModal(id) {
+  const el = document.getElementById(id);
+  el.classList.add("open");
+  el.onclick = e => { if (e.target === el) closeModal(id); };
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove("open");
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeModal("modal-emp");
+    closeModal("modal-dept");
+    closeModal("modal-logout");
+  }
 });
 
 // ── Pages ──
@@ -765,7 +1364,22 @@ async function loadEmps() {
   emps = await api("GET", "/employees");
   const tb = document.getElementById("emp-rows");
   if (!emps.length) { tb.innerHTML = '<tr><td colspan="8" class="empty">No employees yet.</td></tr>'; return; }
-  tb.innerHTML = emps.map(e => '<tr><td style="color:var(--text-dim)">' + e.id + '</td><td><div class="emp-cell"><div class="avatar">' + initials(e.first_name, e.last_name) + '</div><div><div style="font-weight:600;font-size:12px">' + e.first_name + ' ' + e.last_name + '</div><div style="font-size:10px;color:var(--text-muted)">' + e.email + '</div></div></div></td><td style="color:var(--text-muted)">' + e.position + '</td><td style="color:var(--text-muted)">' + (e.department_name || "—") + '</td><td style="font-weight:600">₱' + Number(e.salary).toLocaleString() + '</td><td><span class="badge b-' + e.status + '">' + e.status.replace("_"," ") + '</span></td><td style="font-size:11px;color:var(--text-dim)">' + (e.hire_date || "") + '</td><td><button class="del" onclick="delEmp(' + e.id + ')">✕</button></td></tr>').join("");
+  tb.innerHTML = emps.map(e =>
+    '<tr>' +
+    '<td style="color:var(--text-dim)">' + e.id + '</td>' +
+    '<td><div class="emp-cell"><div class="avatar">' + initials(e.first_name, e.last_name) + '</div>' +
+    '<div><div style="font-weight:600;font-size:12px">' + e.first_name + ' ' + e.last_name + '</div>' +
+    '<div style="font-size:10px;color:var(--text-muted)">' + e.email + '</div></div></div></td>' +
+    '<td style="color:var(--text-muted)">' + e.position + '</td>' +
+    '<td style="color:var(--text-muted)">' + (e.department_name || "—") + '</td>' +
+    '<td style="font-weight:600">₱' + Number(e.salary).toLocaleString() + '</td>' +
+    '<td><span class="badge b-' + e.status + '">' + e.status.replace("_"," ") + '</span></td>' +
+    '<td style="font-size:11px;color:var(--text-dim)">' + (e.hire_date || "") + '</td>' +
+    '<td style="display:flex;gap:4px;align-items:center">' +
+    '<button class="edit-btn" onclick="openEditEmp(' + e.id + ')">✎ Edit</button>' +
+    '<button class="del" onclick="delEmp(' + e.id + ')">✕</button>' +
+    '</td></tr>'
+  ).join("");
   loadStats();
 }
 
@@ -773,21 +1387,120 @@ async function loadDepts() {
   depts = await api("GET", "/departments");
   const tb = document.getElementById("dept-rows");
   if (!depts.length) { tb.innerHTML = '<tr><td colspan="5" class="empty">No departments yet.</td></tr>'; return; }
-  tb.innerHTML = depts.map(d => '<tr><td style="color:var(--text-dim)">' + d.id + '</td><td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent1),var(--accent2));flex-shrink:0"></div><span style="font-weight:600">' + d.name + '</span></div></td><td style="font-weight:600">₱' + Number(d.budget).toLocaleString() + '</td><td style="font-size:11px;color:var(--text-dim)">' + (d.created_at?.slice(0,10) || "") + '</td><td><button class="del" onclick="delDept(' + d.id + ')">✕</button></td></tr>').join("");
+  tb.innerHTML = depts.map(d =>
+    '<tr>' +
+    '<td style="color:var(--text-dim)">' + d.id + '</td>' +
+    '<td><div style="display:flex;align-items:center;gap:8px">' +
+    '<div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent1),var(--accent2));flex-shrink:0"></div>' +
+    '<span style="font-weight:600">' + d.name + '</span></div></td>' +
+    '<td style="font-weight:600">₱' + Number(d.budget).toLocaleString() + '</td>' +
+    '<td style="font-size:11px;color:var(--text-dim)">' + (d.created_at?.slice(0,10) || "") + '</td>' +
+    '<td style="display:flex;gap:4px;align-items:center">' +
+    '<button class="edit-btn" onclick="openEditDept(' + d.id + ')">✎ Edit</button>' +
+    '<button class="del" onclick="delDept(' + d.id + ')">✕</button>' +
+    '</td></tr>'
+  ).join("");
 }
 
+// ── EDIT EMPLOYEE ──
+function openEditEmp(id) {
+  const emp = emps.find(e => e.id === id);
+  if (!emp) return toast("Employee not found", false);
+  document.getElementById("edit-emp-id").value     = emp.id;
+  document.getElementById("edit-emp-fn").value      = emp.first_name || "";
+  document.getElementById("edit-emp-ln").value      = emp.last_name  || "";
+  document.getElementById("edit-emp-email").value   = emp.email      || "";
+  document.getElementById("edit-emp-pos").value     = emp.position   || "";
+  document.getElementById("edit-emp-sal").value     = emp.salary     || "";
+  document.getElementById("edit-emp-hire").value    = emp.hire_date  || "";
+  document.getElementById("edit-emp-status").value  = emp.status     || "active";
+  const deptSel = document.getElementById("edit-emp-dept");
+  deptSel.innerHTML = '<option value="" disabled>Select dept…</option>' +
+    depts.map(d => '<option value="' + d.id + '"' + (d.id === emp.department_id ? ' selected' : '') + '>' + d.name + '</option>').join("");
+  openModal("modal-emp");
+}
+
+async function saveEmployee() {
+  const id     = parseInt(document.getElementById("edit-emp-id").value);
+  const fn     = document.getElementById("edit-emp-fn").value.trim();
+  const ln     = document.getElementById("edit-emp-ln").value.trim();
+  const email  = document.getElementById("edit-emp-email").value.trim();
+  const pos    = document.getElementById("edit-emp-pos").value.trim();
+  const dept   = parseInt(document.getElementById("edit-emp-dept").value);
+  const sal    = parseFloat(document.getElementById("edit-emp-sal").value);
+  const hire   = document.getElementById("edit-emp-hire").value || null;
+  const status = document.getElementById("edit-emp-status").value;
+  if (!fn || !ln || !email || !pos || !dept || isNaN(sal)) return toast("All fields are required", false);
+  try {
+    await api("PUT", "/employees/" + id, {
+      first_name: fn, last_name: ln, email, position: pos,
+      department_id: dept, salary: sal, hire_date: hire, status
+    });
+    toast("Employee updated successfully ✓");
+    closeModal("modal-emp");
+    loadEmps();
+  } catch(e) { toast("Error: " + e.message, false); }
+}
+
+// ── EDIT DEPARTMENT ──
+function openEditDept(id) {
+  const dept = depts.find(d => d.id === id);
+  if (!dept) return toast("Department not found", false);
+  document.getElementById("edit-dept-id").value     = dept.id;
+  document.getElementById("edit-dept-name").value   = dept.name   || "";
+  document.getElementById("edit-dept-budget").value = dept.budget || "";
+  openModal("modal-dept");
+}
+
+async function saveDept() {
+  const id     = parseInt(document.getElementById("edit-dept-id").value);
+  const name   = document.getElementById("edit-dept-name").value.trim();
+  const budget = parseFloat(document.getElementById("edit-dept-budget").value);
+  if (!name || isNaN(budget)) return toast("Name and budget are required", false);
+  try {
+    await api("PUT", "/departments/" + id, { name, budget });
+    toast("Department updated successfully ✓");
+    closeModal("modal-dept");
+    loadDepts(); loadStats();
+  } catch(e) { toast("Error: " + e.message, false); }
+}
+
+// ── LEAVE / PAYROLL / AUDIT ──
 async function loadLeaves() {
   const rows = await api("GET", "/leaves");
   const tb = document.getElementById("leave-rows");
   if (!rows.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">No leave requests.</td></tr>'; return; }
-  tb.innerHTML = rows.map(l => '<tr><td style="color:var(--text-dim)">' + l.id + '</td><td>' + l.employee_name + '</td><td><span class="mono">' + l.leave_type + '</span></td><td style="font-size:11px;color:var(--text-muted)">' + l.start_date + ' → ' + l.end_date + '</td><td style="color:var(--text-muted);font-size:11px">' + (l.reason || "—") + '</td><td><span class="badge b-' + l.status + '">' + l.status + '</span></td><td style="display:flex;gap:4px;align-items:center">' + (l.status === "pending" ? '<button class="act-btn act-ok" onclick="setLeave(' + l.id + ',\'approved\')">Approve</button><button class="act-btn act-no" onclick="setLeave(' + l.id + ',\'rejected\')">Reject</button>' : "") + '<button class="del" onclick="delLeave(' + l.id + ')">✕</button></td></tr>').join("");
+  tb.innerHTML = rows.map(l =>
+    '<tr><td style="color:var(--text-dim)">' + l.id + '</td>' +
+    '<td>' + l.employee_name + '</td>' +
+    '<td><span class="mono">' + l.leave_type + '</span></td>' +
+    '<td style="font-size:11px;color:var(--text-muted)">' + l.start_date + ' → ' + l.end_date + '</td>' +
+    '<td style="color:var(--text-muted);font-size:11px">' + (l.reason || "—") + '</td>' +
+    '<td><span class="badge b-' + l.status + '">' + l.status + '</span></td>' +
+    '<td style="display:flex;gap:4px;align-items:center">' +
+    (l.status === "pending" ? '<button class="act-btn act-ok" onclick="setLeave(' + l.id + ',\'approved\')">Approve</button><button class="act-btn act-no" onclick="setLeave(' + l.id + ',\'rejected\')">Reject</button>' : "") +
+    '<button class="del" onclick="delLeave(' + l.id + ')">✕</button></td></tr>'
+  ).join("");
 }
 
 async function loadPayroll() {
   const rows = await api("GET", "/payroll");
   const tb = document.getElementById("pay-rows");
   if (!rows.length) { tb.innerHTML = '<tr><td colspan="9" class="empty">No payroll records.</td></tr>'; return; }
-  tb.innerHTML = rows.map(p => '<tr><td style="color:var(--text-dim)">' + p.id + '</td><td style="font-weight:600">' + p.employee_name + '</td><td><span class="mono">' + p.period + '</span></td><td style="color:var(--text-muted)">₱' + Number(p.base_salary).toLocaleString() + '</td><td style="color:#34d6c8">+₱' + Number(p.bonus).toLocaleString() + '</td><td style="color:#f472b6">-₱' + Number(p.deductions).toLocaleString() + '</td><td style="font-weight:600;color:#c4b5fd">₱' + Number(p.net_pay).toLocaleString() + '</td><td><span class="badge b-' + p.status + '">' + p.status + '</span></td><td style="display:flex;gap:4px">' + (p.status === "pending" ? '<button class="act-btn" onclick="setPayroll(' + p.id + ',\'processed\')">Process</button>' : "") + (p.status === "processed" ? '<button class="act-btn act-ok" onclick="setPayroll(' + p.id + ',\'released\')">Release</button>' : "") + '<button class="del" onclick="delPay(' + p.id + ')">✕</button></td></tr>').join("");
+  tb.innerHTML = rows.map(p =>
+    '<tr><td style="color:var(--text-dim)">' + p.id + '</td>' +
+    '<td style="font-weight:600">' + p.employee_name + '</td>' +
+    '<td><span class="mono">' + p.period + '</span></td>' +
+    '<td style="color:var(--text-muted)">₱' + Number(p.base_salary).toLocaleString() + '</td>' +
+    '<td style="color:#34d6c8">+₱' + Number(p.bonus).toLocaleString() + '</td>' +
+    '<td style="color:#f472b6">-₱' + Number(p.deductions).toLocaleString() + '</td>' +
+    '<td style="font-weight:600;color:#c4b5fd">₱' + Number(p.net_pay).toLocaleString() + '</td>' +
+    '<td><span class="badge b-' + p.status + '">' + p.status + '</span></td>' +
+    '<td style="display:flex;gap:4px">' +
+    (p.status === "pending" ? '<button class="act-btn" onclick="setPayroll(' + p.id + ',\'processed\')">Process</button>' : "") +
+    (p.status === "processed" ? '<button class="act-btn act-ok" onclick="setPayroll(' + p.id + ',\'released\')">Release</button>' : "") +
+    '<button class="del" onclick="delPay(' + p.id + ')">✕</button></td></tr>'
+  ).join("");
 }
 
 async function loadAudit() {
@@ -795,7 +1508,13 @@ async function loadAudit() {
   const tb = document.getElementById("audit-rows");
   if (!rows.length) { tb.innerHTML = '<tr><td colspan="5" class="empty">No audit entries.</td></tr>'; return; }
   const opColor = { INSERT:"#34d6c8", UPDATE:"#c4b5fd", DELETE:"#f472b6", STOCK_DEDUCT:"#fbbf24" };
-  tb.innerHTML = rows.map(a => '<tr><td style="font-size:11px;color:var(--text-dim);white-space:nowrap">' + a.ts + '</td><td style="color:var(--text-muted)">' + a.table_name + '</td><td><span style="font-family:monospace;font-size:10px;color:' + (opColor[a.operation]||"var(--text-muted)") + ';background:rgba(255,255,255,.07);padding:2px 7px;border-radius:4px">' + a.operation + '</span></td><td style="color:var(--text-dim)">' + (a.record_id || "") + '</td><td style="font-size:11px;color:var(--text-muted)">' + (a.note || "") + '</td></tr>').join("");
+  tb.innerHTML = rows.map(a =>
+    '<tr><td style="font-size:11px;color:var(--text-dim);white-space:nowrap">' + a.ts + '</td>' +
+    '<td style="color:var(--text-muted)">' + a.table_name + '</td>' +
+    '<td><span style="font-family:monospace;font-size:10px;color:' + (opColor[a.operation]||"var(--text-muted)") + ';background:rgba(255,255,255,.07);padding:2px 7px;border-radius:4px">' + a.operation + '</span></td>' +
+    '<td style="color:var(--text-dim)">' + (a.record_id || "") + '</td>' +
+    '<td style="font-size:11px;color:var(--text-muted)">' + (a.note || "") + '</td></tr>'
+  ).join("");
 }
 
 async function addEmployee() {
@@ -814,10 +1533,12 @@ async function addEmployee() {
     loadEmps();
   } catch(e) { toast(e.message, false); }
 }
+
 async function delEmp(id) {
   try { await api("DELETE", "/employees/" + id); toast("Employee removed"); loadEmps(); }
   catch(e) { toast(e.message, false); }
 }
+
 async function addDept() {
   const n = document.getElementById("d-name").value.trim();
   const b = parseFloat(document.getElementById("d-budget").value);
@@ -829,10 +1550,12 @@ async function addDept() {
     loadDepts(); loadStats();
   } catch(e) { toast(e.message, false); }
 }
+
 async function delDept(id) {
   try { await api("DELETE", "/departments/" + id); toast("Department deleted"); loadDepts(); loadStats(); }
   catch(e) { toast(e.message, false); }
 }
+
 async function addLeave() {
   const eid = parseInt(document.getElementById("l-emp").value);
   const lt  = document.getElementById("l-type").value;
@@ -845,16 +1568,19 @@ async function addLeave() {
     toast("Leave request submitted"); loadLeaves(); loadStats();
   } catch(err) { toast(err.message, false); }
 }
+
 async function setLeave(id, status) {
   try {
     await api("PUT", "/leaves/" + id + "/status", { status });
     toast("Leave " + status + " — transaction committed"); loadLeaves(); loadEmps();
   } catch(e) { toast(e.message, false); }
 }
+
 async function delLeave(id) {
   try { await api("DELETE", "/leaves/" + id); toast("Leave removed"); loadLeaves(); loadStats(); }
   catch(e) { toast(e.message, false); }
 }
+
 async function runPayroll() {
   const eid    = parseInt(document.getElementById("p-emp").value);
   const period = document.getElementById("p-period").value.trim();
@@ -866,10 +1592,12 @@ async function runPayroll() {
     toast("Payroll processed — transaction committed"); loadPayroll(); loadStats();
   } catch(e) { toast("Rolled back: " + e.message, false); }
 }
+
 async function setPayroll(id, status) {
   try { await api("PUT", "/payroll/" + id + "/status", { status }); toast("Payroll " + status); loadPayroll(); }
   catch(e) { toast(e.message, false); }
 }
+
 async function delPay(id) {
   try { await api("DELETE", "/payroll/" + id); toast("Payroll record deleted"); loadPayroll(); loadStats(); }
   catch(e) { toast(e.message, false); }
