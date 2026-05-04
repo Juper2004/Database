@@ -16,37 +16,95 @@
   --text-primary: #fff;
   --text-muted: rgba(255,255,255,0.7);
   --text-dim: rgba(255,255,255,0.45);
+  --bg-gradient: linear-gradient(135deg, #1a0533 0%, #0d1f5c 40%, #0a3d4a 80%, #0d2e1a 100%);
+  --glow1: rgba(167,139,250,0.35);
+  --glow2: rgba(52,214,200,0.28);
+  --card-bg: rgba(12, 8, 36, 0.88);
+  --left-grad: linear-gradient(145deg, #7c3aed 0%, #2563eb 55%, #0891b2 100%);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html.light-mode {
+  --glass-bg: rgba(30,30,50,0.12);
+  --glass-border: rgba(100,100,150,0.3);
+  --glass-shadow: 0 8px 32px rgba(100,100,150,0.15);
+  --accent1: #7c3aed;
+  --accent2: #0891b2;
+  --accent3: #db2777;
+  --text-primary: #1a1a2e;
+  --text-muted: rgba(26,26,46,0.65);
+  --text-dim: rgba(26,26,46,0.45);
+  --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 40%, #f0fdfa 80%, #f0fdf4 100%);
+  --glow1: rgba(124,58,237,0.15);
+  --glow2: rgba(8,145,178,0.12);
+  --card-bg: rgba(255,255,255,0.92);
+  --left-grad: linear-gradient(145deg, #6d28d9 0%, #1e40af 55%, #0e7490 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
 html, body { height: 100%; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1a0533 0%, #0d1f5c 40%, #0a3d4a 80%, #0d2e1a 100%);
+  background: var(--bg-gradient);
   color: var(--text-primary);
   font-size: 14px;
   height: 100vh;
   overflow: hidden;
   position: relative;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 body::before {
   content: '';
   position: fixed;
   top: -120px; left: -80px;
   width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(167,139,250,0.35) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--glow1) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
+  transition: background 0.4s ease;
 }
 body::after {
   content: '';
   position: fixed;
   bottom: -80px; right: -60px;
   width: 360px; height: 360px;
-  background: radial-gradient(circle, rgba(52,214,200,0.28) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--glow2) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
+  transition: background 0.4s ease;
 }
 
 /* ── LOGIN SCREEN ── */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap');
+
+@keyframes loginFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loginSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes loginSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 #login-screen {
   display: flex;
@@ -66,18 +124,21 @@ body::after {
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
+  animation: loginFadeIn 0.6s ease-out;
 }
 
 /* LEFT PANEL — welcome / branding */
 .login-left {
   flex: 0 0 340px;
-  background: linear-gradient(145deg, #7c3aed 0%, #2563eb 55%, #0891b2 100%);
+  background: var(--left-grad);
   padding: 44px 36px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
+  animation: loginSlideInLeft 0.7s ease-out 0.1s both;
+  transition: background 0.4s ease;
 }
 /* Decorative blobs */
 .login-left::before {
@@ -152,30 +213,37 @@ body::after {
 /* RIGHT PANEL — form */
 .login-right {
   flex: 1;
-  background: rgba(12, 8, 36, 0.88);
+  background: var(--card-bg);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   padding: 44px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 1px solid rgba(255,255,255,0.08);
+  border-left: 1px solid var(--glass-border);
+  animation: loginSlideInRight 0.7s ease-out 0.1s both;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 .login-right-title {
   font-family: 'Syne', sans-serif;
   font-size: 24px; font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 6px;
+  animation: loginFadeIn 0.6s ease-out 0.2s both;
 }
 .login-right-sub {
   font-size: 12px; color: var(--text-muted);
   margin-bottom: 28px;
+  animation: loginFadeIn 0.6s ease-out 0.25s both;
 }
 .login-field {
   display: flex; flex-direction: column; gap: 5px;
   margin-bottom: 14px;
   position: relative;
+  animation: loginFadeIn 0.6s ease-out forwards;
 }
+.login-field:nth-child(1) { animation-delay: 0.3s; }
+.login-field:nth-child(2) { animation-delay: 0.35s; }
 .login-field label {
   font-size: 10px; color: var(--text-muted);
   text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600;
@@ -203,6 +271,17 @@ body::after {
 .login-field input:focus {
   border-color: var(--accent1);
   background: rgba(167,139,250,0.12);
+}
+html.light-mode .login-field input {
+  border-color: rgba(124,58,237,0.2);
+  background: rgba(124,58,237,0.08);
+}
+html.light-mode .login-field input::placeholder {
+  color: rgba(26,26,46,0.35);
+}
+html.light-mode .login-field input:focus {
+  border-color: #7c3aed;
+  background: rgba(124,58,237,0.15);
 }
 .login-field input:focus + .login-field-icon,
 .login-field-wrap:focus-within .login-field-icon { color: var(--accent1); }
@@ -240,8 +319,13 @@ body::after {
   background: linear-gradient(135deg, #7c3aed, #2563eb);
   color: #fff;
   letter-spacing: 0.3px;
-  transition: opacity .15s, transform .1s;
+  transition: opacity .15s, transform .1s, background 0.4s ease;
   box-shadow: 0 6px 20px rgba(124,58,237,0.4);
+  animation: loginFadeIn 0.6s ease-out 0.4s both;
+}
+html.light-mode .login-btn {
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  box-shadow: 0 6px 20px rgba(124,58,237,0.3);
 }
 .login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 .login-btn:active { transform: translateY(0); }
@@ -267,6 +351,67 @@ body::after {
   0%,100% { transform: translateX(0); }
   25%      { transform: translateX(-5px); }
   75%      { transform: translateX(5px); }
+}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  width: 74px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: var(--glass-blur);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+}
+.theme-toggle:active {
+  transform: translateY(0);
+}
+.theme-toggle:focus {
+  outline: none;
+}
+.theme-toggle .toggle-track {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #2b6cf4 0%, #60a5fa 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+.theme-toggle .toggle-thumb {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(15,23,42,0.18);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+html.light-mode .theme-toggle .toggle-track {
+  background: linear-gradient(135deg, #93c5fd 0%, #bfdbfe 100%);
+}
+html.light-mode .theme-toggle .toggle-thumb {
+  transform: translateX(38px);
+}
+html.light-mode .theme-toggle {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(148,163,184,0.35);
+}
+html.light-mode .theme-toggle:hover {
+  box-shadow: 0 10px 26px rgba(15,23,42,0.08);
 }
 
 /* ── MAIN APP ── */
@@ -796,6 +941,12 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
 </head>
 <body>
 
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode" aria-pressed="false">
+  <span class="toggle-track"></span>
+  <span class="toggle-thumb"></span>
+</button>
+
 <!-- ══════════════ LOGIN SCREEN ══════════════ -->
 <div id="login-screen">
   <div class="login-card">
@@ -1207,6 +1358,29 @@ tbody tr:hover td { background: rgba(255,255,255,0.07); }
 <script>
 const API = "http://localhost:8000";
 let depts = [], emps = [];
+
+// ── Theme Toggle ──
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const toggle = document.getElementById('theme-toggle');
+  
+  if (savedTheme === 'light') {
+    document.documentElement.classList.add('light-mode');
+    toggle.setAttribute('aria-pressed', 'true');
+  } else {
+    document.documentElement.classList.remove('light-mode');
+    toggle.setAttribute('aria-pressed', 'false');
+  }
+  
+  toggle.addEventListener('click', function() {
+    const isLight = document.documentElement.classList.toggle('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    this.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+  });
+}
+
+// Initialize theme on load
+document.addEventListener('DOMContentLoaded', initTheme);
 
 const USERS = [
   { username: "admin",   password: "jupernavarro",  name: "Admin",        role: "HR Administrator" },
