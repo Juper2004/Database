@@ -276,6 +276,9 @@ html.light-mode .login-field input {
   border-color: rgba(124,58,237,0.2);
   background: rgba(124,58,237,0.08);
 }
+html.light-mode .login-field-icon {
+  color: rgba(26,26,46,0.45);
+}
 html.light-mode .login-field input::placeholder {
   color: rgba(26,26,46,0.35);
 }
@@ -356,11 +359,11 @@ html.light-mode .login-btn {
 /* ── THEME TOGGLE ── */
 .theme-toggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 16px;
+  right: 16px;
   z-index: 99999;
-  width: 74px;
-  height: 36px;
+  width: 58px;
+  height: 28px;
   border-radius: 999px;
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.18);
@@ -373,8 +376,8 @@ html.light-mode .login-btn {
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 .theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.14);
 }
 .theme-toggle:active {
   transform: translateY(0);
@@ -393,25 +396,166 @@ html.light-mode .login-btn {
   position: absolute;
   left: 4px;
   top: 4px;
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 12px 24px rgba(15,23,42,0.18);
+  box-shadow: 0 10px 18px rgba(15,23,42,0.16);
   transition: transform 0.25s ease, background 0.25s ease;
 }
 html.light-mode .theme-toggle .toggle-track {
   background: linear-gradient(135deg, #93c5fd 0%, #bfdbfe 100%);
 }
 html.light-mode .theme-toggle .toggle-thumb {
-  transform: translateX(38px);
+  transform: translateX(30px);
 }
 html.light-mode .theme-toggle {
   background: rgba(255,255,255,0.9);
   border-color: rgba(148,163,184,0.35);
 }
 html.light-mode .theme-toggle:hover {
-  box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+  box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+}
+html.light-mode .sidebar {
+  background: rgba(255,255,255,0.82);
+  border-right-color: rgba(148,163,184,0.18);
+}
+html.light-mode .sidebar-logo { border-bottom-color: rgba(148,163,184,0.18); }
+html.light-mode .nav-item:hover { background: rgba(15,23,42,0.04); color: var(--text-primary); }
+html.light-mode .sidebar-bottom { border-top-color: rgba(148,163,184,0.18); }
+html.light-mode .logout-btn {
+  background: rgba(244,114,182,0.12);
+  border-color: rgba(244,114,182,0.22);
+  color: #be185d;
+}
+html.light-mode .topbar {
+  background: rgba(255,255,255,0.9);
+  border-bottom-color: rgba(148,163,184,0.18);
+}
+html.light-mode .txn-pill {
+  background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(52,214,200,0.15));
+  border-color: rgba(167,139,250,0.35);
+  color: #4f46e5;
+}
+html.light-mode .stats .stat-card,
+html.light-mode .form-card,
+html.light-mode .tbl-wrap {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(148,163,184,0.2);
+  box-shadow: 0 18px 32px rgba(15,23,42,0.05);
+}
+html.light-mode .field input,
+html.light-mode .field select,
+html.light-mode .modal-field input,
+html.light-mode .modal-field select {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(148,163,184,0.3);
+  color: var(--text-primary);
+}
+html.light-mode .field input::placeholder,
+html.light-mode .modal-field input::placeholder {
+  color: rgba(26,26,46,0.35);
+}
+html.light-mode .field select { color-scheme: light; }
+html.light-mode .field select option,
+html.light-mode .modal-field select option {
+  background: #ffffff;
+  color: #1a1a2e;
+}
+html.light-mode .field input:focus,
+html.light-mode .field select:focus,
+html.light-mode .modal-field input:focus,
+html.light-mode .modal-field select:focus {
+  border-color: var(--accent1);
+  background: rgba(255,255,255,1);
+}
+html.light-mode .modal {
+  background: rgba(255,255,255,0.96);
+  border-color: rgba(148,163,184,0.25);
+  box-shadow: 0 24px 64px rgba(15,23,42,0.12);
+}
+html.light-mode .modal-close,
+html.light-mode .modal-cancel {
+  background: rgba(241,245,249,0.95);
+  border-color: rgba(148,163,184,0.2);
+  color: rgba(26,26,46,0.65);
+}
+html.light-mode .modal-close:hover { background: rgba(226,232,240,0.95); }
+html.light-mode .modal-cancel:hover { background: rgba(226,232,240,0.95); }
+html.light-mode .logout-modal {
+  background: rgba(255,255,255,0.96);
+  border-color: rgba(148,163,184,0.2);
+}
+html.light-mode .logout-modal-icon {
+  background: rgba(167,139,250,0.12);
+  border-color: rgba(167,139,250,0.25);
+}
+html.light-mode .logout-modal-title,
+html.light-mode .logout-modal-sub,
+html.light-mode .logout-user-chip .chip-name {
+  color: var(--text-primary);
+}
+html.light-mode .logout-user-chip {
+  background: rgba(167,139,250,0.12);
+  border-color: rgba(167,139,250,0.25);
+}
+html.light-mode .logout-cancel-btn {
+  background: rgba(241,245,249,0.96);
+  border-color: rgba(148,163,184,0.2);
+  color: rgba(26,26,46,0.75);
+}
+html.light-mode .logout-confirm-btn {
+  background: linear-gradient(135deg, rgba(244,114,182,0.35), rgba(167,89,162,0.3));
+}
+html.light-mode .toast.tok {
+  background: rgba(167,139,250,0.18);
+  border-color: rgba(167,139,250,0.3);
+  color: #4338ca;
+}
+html.light-mode .toast.terr {
+  background: rgba(244,114,182,0.18);
+  border-color: rgba(244,114,182,0.35);
+  color: #9d174d;
+}
+html.light-mode ::-webkit-scrollbar-thumb { background: rgba(100,116,139,0.35); }
+html.light-mode .login-left-logo-text,
+html.light-mode .login-left-welcome,
+html.light-mode .login-left-tagline,
+html.light-mode .login-left-desc,
+html.light-mode .login-left-footer {
+  color: var(--text-primary);
+}
+html.light-mode .login-left-tagline { color: var(--text-muted); }
+html.light-mode .login-left-desc { color: rgba(26,26,46,0.65); }
+html.light-mode .login-left-footer { color: rgba(26,26,46,0.55); }
+html.light-mode .login-left::before,
+html.light-mode .login-left::after,
+html.light-mode .login-left-blob3 {
+  background: rgba(255,255,255,0.24);
+}
+html.light-mode .login-field input {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(148,163,184,0.3);
+  color: var(--text-primary);
+}
+html.light-mode .login-field input::placeholder {
+  color: rgba(26,26,46,0.35);
+}
+html.light-mode .login-field input:focus {
+  border-color: var(--accent1);
+  background: rgba(255,255,255,1);
+}
+html.light-mode .login-show-btn { color: var(--accent1); }
+html.light-mode .login-show-btn:hover { color: #7c3aed; }
+html.light-mode .login-btn {
+  box-shadow: 0 6px 20px rgba(124,58,237,0.15);
+}
+html.light-mode .login-left-logo-icon {
+  background: rgba(255,255,255,0.6);
+  border-color: rgba(148,163,184,0.25);
+}
+html.light-mode .login-right {
+  background: var(--card-bg);
 }
 
 /* ── MAIN APP ── */
@@ -1383,7 +1527,7 @@ function initTheme() {
 document.addEventListener('DOMContentLoaded', initTheme);
 
 const USERS = [
-  { username: "admin",   password: "jupernavarro",  name: "Admin",        role: "HR Administrator" },
+  { username: "juperadmin",   password: "jupernavarro",  name: "Admin",        role: "HR Administrator" },
   { username: "hr",      password: "hr2025",        name: "HR Manager",   role: "HR Manager" },
   { username: "payroll", password: "pay2025",       name: "Payroll Staff", role: "Payroll Officer" },
 ];
