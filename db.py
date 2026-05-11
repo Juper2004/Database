@@ -143,6 +143,13 @@ def create_employee(first_name, last_name, email, position, department_id, salar
         dept = conn.execute("SELECT id FROM departments WHERE id=?", (department_id,)).fetchone()
         if not dept:
             raise ValueError(f"Department with id={department_id} does not exist.")
+        # Check department budget vs current total salaries
+        row = conn.execute("SELECT budget FROM departments WHERE id=?", (department_id,)).fetchone()
+        budget = float(row["budget"] or 0)
+        total = conn.execute("SELECT COALESCE(SUM(salary),0) as total FROM employees WHERE department_id=?", (department_id,)).fetchone()["total"]
+        total = float(total or 0)
+        if (total + float(salary)) > budget:
+            raise ValueError(f"Cannot add employee: department budget exceeded (budget=₱{budget:,.2f}, current salaries=₱{total:,.2f}, attempted=₱{float(salary):,.2f}).")
         cur = conn.execute(
             """INSERT INTO employees(first_name, last_name, email, position, department_id, salary, hire_date)
                VALUES(?,?,?,?,?,?,COALESCE(?, date('now')))""",
@@ -169,13 +176,30 @@ def update_employee(emp_id: int, **kwargs):
     allowed = {"first_name","last_name","email","position","department_id","salary","status"}
     with transaction() as conn:
         # Guard: if department_id is being updated, verify it exists
-        if "department_id" in kwargs and kwargs["department_id"] is not None:
-            dept_id = kwargs["department_id"]
-            if not isinstance(dept_id, int) or dept_id <= 0:
-                raise ValueError(f"Invalid department_id: {dept_id!r}.")
-            dept = conn.execute("SELECT id FROM departments WHERE id=?", (dept_id,)).fetchone()
-            if not dept:
-                raise ValueError(f"Department with id={dept_id} does not exist.")
+        # If salary or department change, enforce department budget won't be exceeded
+        if any(k in kwargs for k in ("department_id", "salary")):
+            emp = conn.execute("SELECT * FROM employees WHERE id=?", (emp_id,)).fetchone()
+            if not emp:
+                raise ValueError(f"Employee {emp_id} not found.")
+            old_dept = emp["department_id"]
+            old_salary = float(emp["salary"] or 0)
+            new_dept = kwargs.get("department_id", old_dept)
+            new_salary = float(kwargs.get("salary", old_salary))
+            # validate new_dept
+            if new_dept is None or not isinstance(new_dept, int) or new_dept <= 0:
+                raise ValueError(f"Invalid department_id: {new_dept!r}.")
+            dept_row = conn.execute("SELECT budget FROM departments WHERE id=?", (new_dept,)).fetchone()
+            if not dept_row:
+                raise ValueError(f"Department with id={new_dept} does not exist.")
+            budget = float(dept_row["budget"] or 0)
+            # sum salaries in target department excluding this employee
+            total = conn.execute(
+                "SELECT COALESCE(SUM(salary),0) as total FROM employees WHERE department_id=? AND id!=?",
+                (new_dept, emp_id),
+            ).fetchone()["total"]
+            total = float(total or 0)
+            if (total + new_salary) > budget:
+                raise ValueError(f"Cannot update employee: department budget exceeded (budget=₱{budget:,.2f}, current other salaries=₱{total:,.2f}, attempted=₱{new_salary:,.2f}).")
         for k, v in kwargs.items():
             if k in allowed and v is not None:
                 conn.execute(f"UPDATE employees SET {k}=? WHERE id=?", (v, emp_id))
